@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>듀자이크 생성기</title>
+	<style>
+		ul{font-size: 50px;}
+		input{font-size:50px;}
+	</style>
+</head>
+<body>
+	<h1>듀자이크 생성기</h1>
+	<hr>
+
+
+    <br><br><br><ul>
+    <li><input type="file" id="getfile" accept="image/*" style="font-size:100px;"></li></ul>
+    <br><br><br><br>
+
+
+
+<canvas onclick ="dualss(event);" id="mycanvas"  ></canvas>
+    <ul>
+		<li>1번 모자이크 가로 길이  <br><input id='dw' onkeyup='dwv()' > <br>
+			현재값 <a id='result1'></a> <br><br><br>
+
+			<a onclick="one100()">[+100]</a><a>//</a> 
+			<a onclick="one10()">[+10]</a><a>//</a>
+			<a onclick="onem10()">[-10]</a><a>//</a>
+			<a onclick="onem100()">[-100]</a></li>
+		<br><br><br>
+	    <li>1번 모자이크 세로 길이  <br><input id='dh' onkeyup='dhv()'/> <br>
+	    	현재값 <a id='result2'></a> <br><br><br>
+	    	<a onclick="two100()">[+100]</a> <a>//</a> 
+	    	<a onclick="two10()">[+10]</a> <a>//</a> 
+	    	<a onclick="twom10()">[-10]</a> <a>//</a>  
+	    	<a onclick="twom100()">[-100]</a></li>
+	    <br><br><br>
+	    <li>1번 이미지 선택 <br> </li>
+	    현재값 <a id='image1'></a><br><br>
+
+	    <a onclick="q11()">1.구 듀블 (배경 투명)</a><br>
+	    <a onclick="q12()">2.구 듀블 (배경 불투명)</a><br>
+	    <a onclick="q13()">3.신 듀블 (배경 투명)</a><br>
+	    <a onclick="q14()">4.신 듀블 (배경 불투명)</a><br>
+	    <a onclick="q15()">5.필요한 만큼은 보여줬다</a><br>
+	    <a onclick="q16()">6.너굴맨이 처리했으니 안심하라구!</a><br>
+
+    </ul>
+
+
+
+<canvas onclick ="dualss2(event);" id="mycanvas2"  ></canvas>
+    <ul>
+	    <li>2번 모자이크 가로 길이  <br><input id='dw2' onkeyup='dwv2()'/> <br>
+	    	현재값 <a id='result3'></a> <br><br><br>
+	    	<a onclick="three100()">[+100]</a> <a>//</a> 
+	    	<a onclick="three10()">[+10]</a> <a>//</a> 
+	    	<a onclick="threem10()">[-10]</a> <a>//</a> 
+	    	<a onclick="threem100()">[-100]</a></li>
+		<br><br><br>
+	    <li>2번 모자이크 세로 길이  <br><input id='dh2' onkeyup='dhv2()'/> <br>
+	    	현재값 <a id='result4'></a><br><br><br>
+	    	<a onclick="four100()">[+100]</a> <a>//</a> 
+	    	<a onclick="four10()">[+10]</a> <a>//</a> 
+	    	<a onclick="fourm10()">[-10]</a> <a>//</a>
+	    	<a onclick="fourm100()">[-100]</a></li>
+	    <br><br><br>
+	    <li>2번 이미지 선택 <br> </li>
+	    현재값 <a id='image2'></a><br><br>
+
+	    <a onclick="q21()">1.구 듀블 (배경 투명)</a><br>
+	    <a onclick="q22()">2.구 듀블 (배경 불투명)</a><br>
+	    <a onclick="q23()">3.신 듀블 (배경 투명)</a><br>
+	    <a onclick="q24()">4.신 듀블 (배경 불투명)</a><br>
+	    <a onclick="q25()">5.필요한 만큼은 보여줬다</a><br>
+	    <a onclick="q26()">6.너굴맨이 처리했으니 안심하라구!</a><br>
+
+
+    </ul>
+    <br><br><br><br>
+
+
+
+
+
+
+
+    
+
+    
+<h1>결과물</h1><br>
+    <a id="download" download="thumbnail.jpg" target="_blank"> <img id="preview" src="" > </a>
+
+
+
+
+
+
+
+
+    <script>
+
+
+
+
+
+
+
+
+var ddw=300;
+document.getElementById("result1").innerText = ddw;
+var ddh=200;
+document.getElementById("result2").innerText = ddh;
+var ddw2=300;
+document.getElementById("result3").innerText = ddw2;
+var ddh2=200;
+document.getElementById("result4").innerText = ddh2;
+var im1 =1;
+document.getElementById("image1").innerText = im1;
+var im2 =1;
+document.getElementById("image2").innerText = im2;
+
+
+var x1;
+var y1;
+var x2;
+var y2;
+
+
+
+
+
+function dwv()  {
+    ddw = document.getElementById('dw').value;
+    ddw = parseInt(ddw);
+    document.getElementById("result1").innerText = ddw;
+
+}
+function dhv()  {
+    ddh = document.getElementById('dh').value;
+    ddh = parseInt(ddh);
+    document.getElementById("result2").innerText = ddh;
+}
+function dwv2()  {
+    ddw2 = document.getElementById('dw2').value;
+    ddw2 = parseInt(ddw2);
+    document.getElementById("result3").innerText = ddw2;
+}
+function dhv2()  {
+    ddh2 = document.getElementById('dh2').value;
+    ddh2 = parseInt(ddh2);
+    document.getElementById("result4").innerText = ddh2;
+}
+
+
+
+
+
+function one100(){
+	ddw +=100;
+	document.getElementById("result1").innerText = ddw;
+}
+function one10(){
+	ddw +=10;
+	document.getElementById("result1").innerText = ddw;
+}
+function onem10(){
+	ddw -=10;
+	document.getElementById("result1").innerText = ddw;
+}
+function onem100(){
+	ddw -=100;
+	document.getElementById("result1").innerText = ddw;
+}
+
+function two100(){
+	ddh +=100;
+	document.getElementById("result2").innerText = ddh;
+}
+function two10(){
+	ddh +=10;
+	document.getElementById("result2").innerText = ddh;
+}
+function twom10(){
+	ddh -=10;
+	document.getElementById("result2").innerText = ddh;
+}
+function twom100(){
+	ddh -=100;
+	document.getElementById("result2").innerText = ddh;
+}
+
+function three100(){
+	ddw2 +=100;
+	document.getElementById("result3").innerText = ddw2;
+}
+function three10(){
+	ddw2 +=10;
+	document.getElementById("result3").innerText = ddw2;
+}
+function threem10(){
+	ddw2 -=10;
+	document.getElementById("result3").innerText = ddw2;
+}
+function threem100(){
+	ddw2 -=100;
+	document.getElementById("result3").innerText = ddw2;
+}
+
+function four100(){
+	ddh2 +=100;
+	document.getElementById("result4").innerText = ddh2;
+}
+function four10(){
+	ddh2 +=10;
+	document.getElementById("result4").innerText = ddh2;
+}
+function fourm10(){
+	ddh2 -=10;
+	document.getElementById("result4").innerText = ddh2;
+}
+function fourm100(){
+	ddh2 -=100;
+	document.getElementById("result4").innerText = ddh2;
+}
+
+
+
+
+
+
+var canvas = document.querySelector('#mycanvas');
+var context = canvas.getContext("2d");
+context.globalCompositeOperation = "source-over";
+
+var canvas2 = document.querySelector('#mycanvas2');
+var context2 = canvas2.getContext("2d");
+context2.globalCompositeOperation = "source-over";
+
+
+
+
+
+var $file = document.querySelector('#getfile');
+var baseImage = new Image();
+var dusrc;
+var dusrc2;
+
+
+
+
+
+$file.onchange = function () { 
+    var fileList = $file.files;
+    var reader = new FileReader();
+    reader.readAsDataURL(fileList [0]);
+    reader.onload = function  () {
+        baseImage.src = reader.result; //data-uri를 이미지 객체에 주입
+        baseImage.onload = function () {
+        	canvas.width = baseImage.width;
+        	canvas.height = baseImage.height;
+        	canvas2.width = baseImage.width;
+        	canvas2.height = baseImage.height;
+
+            context.drawImage(this, 0, 0, baseImage.width, baseImage.height);
+            context2.drawImage(this, 0,0, baseImage.width, baseImage.height);
+
+            var dataURI = canvas.toDataURL("image/jpeg");
+            document.querySelector('#preview').width = baseImage.width;
+            document.querySelector('#preview').height = baseImage.height;
+            document.querySelector('#preview').src = dataURI; 
+        };
+    };
+};
+
+
+
+
+
+function dualss() {
+
+  var canvas = document.querySelector('#mycanvas');
+  var context = canvas.getContext('2d');
+
+  x1 = event.offsetX;
+  y1 = event.offsetY;
+  context.drawImage(baseImage, 0, 0, baseImage.width, baseImage.height);
+
+  var duImage2 = new Image(); //drawImage 메서드에 넣기 위해 이미지 객체화
+  duImage2.src = dusrc2;
+  var duImage = new Image(); //drawImage 메서드에 넣기 위해 이미지 객체화
+  duImage.src = dusrc;
+
+  duImage.onload = function(){
+  	context.drawImage(this, x1-(ddw/2), y1-(ddh/2), ddw, ddh);
+  	context.drawImage(duImage2, x2-(ddw2/2), y2-(ddh2/2), ddw2, ddh2);
+  	var dataURI = canvas.toDataURL("image/jpeg");
+    document.querySelector('#preview').src = dataURI;
+    document.querySelector('#download').href = dataURI;
+
+  }
+
+}
+
+
+
+
+function dualss2() {
+
+  var canvas2 = document.querySelector('#mycanvas2');
+  var context2 = canvas2.getContext('2d');
+
+  x2 = event.offsetX;
+  y2 = event.offsetY;
+  context2.drawImage(baseImage, 0, 0, baseImage.width, baseImage.height);
+
+  var duImage = new Image(); //drawImage 메서드에 넣기 위해 이미지 객체화
+  duImage.src = dusrc;
+  var duImage2 = new Image(); //drawImage 메서드에 넣기 위해 이미지 객체화
+  duImage2.src = dusrc2;
+
+  duImage2.onload = function(){
+  	context2.drawImage(duImage, x1-(ddw/2), y1-(ddh/2), ddw, ddh);
+  	context2.drawImage(duImage2, x2-(ddw2/2), y2-(ddh2/2), ddw2, ddh2);
+  	var dataURI = canvas2.toDataURL("image/jpeg");
+    document.querySelector('#preview').src = dataURI;
+    document.querySelector('#download').href = dataURI;
+  
+  }
+
+}
+
+
+
+dusrc = "image/guduy.png";
+dusrc2 = "image/guduy.png";
+
+
+
+function q11(){
+dusrc = "image/guduy.png";	
+document.getElementById("image1").innerText = 1;
+}
+function q12(){
+dusrc = "image/gudun.jpg";	
+document.getElementById("image1").innerText = 2;
+}
+function q13(){
+dusrc = "image/sinduy.png";	
+document.getElementById("image1").innerText = 3;
+}
+function q14(){
+dusrc = "image/sindun.png";	
+document.getElementById("image1").innerText = 4;
+}
+function q15(){
+dusrc = "image/pill.png";	
+document.getElementById("image1").innerText = 5;
+}
+function q16(){
+dusrc = "image/nugulman.jpg";	
+document.getElementById("image1").innerText = 6;
+}
+
+
+function q21(){
+dusrc2 = "image/guduy.png";	
+document.getElementById("image2").innerText = 1;
+}
+function q22(){
+dusrc2 = "image/gudun.jpg";	
+document.getElementById("image2").innerText = 2;
+}
+function q23(){
+dusrc2 = "image/sinduy.png";	
+document.getElementById("image2").innerText = 3;
+}
+function q24(){
+dusrc2 = "image/sindun.png";	
+document.getElementById("image2").innerText = 4;
+}
+function q25(){
+dusrc2 = "image/pill.png";	
+document.getElementById("image2").innerText = 5;
+}
+function q26(){
+dusrc2 = "image/nugulman.jpg";	
+document.getElementById("image2").innerText = 6;
+}
+
+
+
+
+    </script>
+
+</body>
+</html>
